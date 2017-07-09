@@ -8,10 +8,9 @@ const userHelper = require('../helper/user.helper'),
     generalController = require('./general.controller');
 
 const signUp = function signUp(req, res) {
-
-
     return userHelper.signUp(req.body)
         .then(function (data) {
+            debugger;
             generalController.successResponse(res, "User signup successfully.", data, "userAuth.controller.signup");
         }).catch(StandardError, function (err) {
             generalController.errorResponse(res, err, null, "userAuth.controller.signup",500);

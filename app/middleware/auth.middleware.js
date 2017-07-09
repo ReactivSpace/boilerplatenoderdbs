@@ -39,10 +39,10 @@ const validateSignUp = (req , res , done) => {
         return generalMiddleware.standardErrorResponse(res, 'Password and confirm password does not match',"user.middleware.signup", 400);
 
     }
-    if(req.body.password .length < 8 || req.body.password.length >16){
-        return generalMiddleware.standardErrorResponse(res, 'Password must be greater than 8 and less than 16',"user.middleware.signup", 400);
+    // if(req.body.password.length < 8 || req.body.password.length >16){
+    //     return generalMiddleware.standardErrorResponse(res, 'Password must be greater than 8 and less than 16',"user.middleware.signup", 400);
 
-    }
+    // }
 
     req.getValidationResult().then((result) => {
         if(!result.isEmpty()){

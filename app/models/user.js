@@ -1,5 +1,5 @@
 /**
- * Created by hassan on 7/7/17.
+ * Created by ahmed on 7/7/17.
  */
 'use strict';
 
@@ -13,22 +13,20 @@ module.exports = function(sequelize, DataTypes) {
 
     let User = sequelize.define('User',
         {
-            firstName: {
+            userFullName: {
                 type : DataTypes.STRING
             },
-            lastName: {
+            userFirstName: {
                 type : DataTypes.STRING
             },
-            userName: {
+            userLastName: {
                 type : DataTypes.STRING
             },
-            email: {
-                type : DataTypes.STRING,
-                isEmail: true,
-                allowNull: false
+             userName: {
+                type : DataTypes.STRING
             },
-            alias: {
-                type : DataTypes.STRING, allowNull: false, unique : true,
+            emailAddress: {
+                type : DataTypes.STRING
             },
             hashedPassword: {
                 type : DataTypes.STRING
@@ -36,16 +34,13 @@ module.exports = function(sequelize, DataTypes) {
             salt: {
                 type : DataTypes.STRING,
             },
-            phoneNumber: {
+            PhoneNumber: {
                 type : DataTypes.STRING
             },
-            countryCode: {
-                type : DataTypes.STRING
-            },
+
             imageUrl: {
                 type : DataTypes.STRING
-            },
-            provider: DataTypes.STRING,
+            }
         },
         {
             instanceMethods: {
@@ -72,7 +67,6 @@ module.exports = function(sequelize, DataTypes) {
         },{
             associate: function(models) {
                 User.hasMany(models.UserTokenInfo);
-                User.belongsTo(models.UserRole);
             }
         }
     );

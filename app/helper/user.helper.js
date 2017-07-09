@@ -10,19 +10,16 @@ const db = require('../config/sequelize.config'),
 
 
  function signUp(input){
-
-     const userObj = {
-         firstName : input.firstName,
-         lastName : input.lastName,
+    const userObj = {
+         userFirstName : input.firstName,
+         userLastName : input.lastName,
+         userFullName: input.firstName+input.lastName,
          userName : input.firstName + input.lastName,
          alias : input.firstName + input.lastName,
-         email : input.email
+         emailAddress : input.email
      };
-
      //return generalHelpingMethods.rejectPromise("msg");
-
      var user = db.User.build(userObj);
-
      user.provider = 'local';
      user.salt = user.makeSalt();
      user.hashedPassword = user.encryptPassword(input.password, user.salt);
