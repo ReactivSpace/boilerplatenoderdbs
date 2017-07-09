@@ -12,8 +12,8 @@ const login = (req) => {
 console.log(req.body);
     let email = req.body.email,
         password = req.body.password,
-        userData = {};
-
+        userData = {},
+        UserRoles=[];
     return db.User.find({where: {emailAddress: email}}, {raw: true})
         .then((user) => {
             if (!user) {
@@ -25,8 +25,15 @@ console.log(req.body);
             }
         }).then((user) => {
             userData.userInfo = user;
-
-            return helpingHelper.signLoginData({data: userData.userInfo, userType: userData.userInfo.UserRoleId});
+           console.log('Ali');
+            return db.UserRoleMapping.find({where: {UserId: user.id}}, {raw: true});
+        }).then((roles) => {
+            UserRoles = roles;
+          
+            console.log('umar');
+            console.log(UserRoles.name);
+            userData.userInfo.UserRoleId=UserRoles.name;
+            return helpingHelper.signLoginData({data: userData.userInfo, userType: UserRoles.RoleId});
         }).then((tokenData) => {
             userData.tokenInfo = tokenData;
             return userData;

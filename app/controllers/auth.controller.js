@@ -10,7 +10,7 @@ const login = function (req, res) {
 // console.log(req.body.email);
     authHelper.login(req)
         .then((data) => {
-             console.log(data);
+            // console.log(data);
             generalController.successResponse(res, "User logedin successfully.", data, "userAuth.controller.login");
         }).catch(StandardError, function (err) {
             generalController.errorResponse(res, err, null, "userAuth.controller.login", 500);
