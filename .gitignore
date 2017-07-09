@@ -1,0 +1,26 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+
+
+# dependencies
+/node_modules
+/app/config/environment.config.json
+
+*.local
+
+# IDE files
+.idea
+/.idea
+/.*.md.html
+.settings
+.project
+.classpath
+*~
+*.swp
+*.swo
+
+
+.bundle
+.DS_Store
+tmp/
