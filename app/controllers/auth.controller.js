@@ -6,9 +6,11 @@ const authHelper = require('../helper/auth.helper'),
 
 
 const login = function (req, res) {
-
+ console.log(req.body);
+// console.log(req.body.email);
     authHelper.login(req)
         .then((data) => {
+             console.log(data);
             generalController.successResponse(res, "User logedin successfully.", data, "userAuth.controller.login");
         }).catch(StandardError, function (err) {
             generalController.errorResponse(res, err, null, "userAuth.controller.login", 500);

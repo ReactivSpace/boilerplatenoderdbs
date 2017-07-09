@@ -8,7 +8,11 @@ const generalMiddleware = require('./general.middleware'),
 
 
 const authenticateLoginParams = (req , res , done) => {
-
+console.log(req.body);
+// console.log(req.body.data);
+console.log(req.body.email);
+//console.log(req);
+//return done();
     req.checkBody('password', 'Invalid password').notEmpty();
     req.checkBody('email', 'Invalid email').notEmpty().isEmail();
 
