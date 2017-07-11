@@ -8,8 +8,6 @@ const helpingHelper = require('./helping.helper');
 
 
 const login = (req) => {
-
-console.log(req.body);
     let email = req.body.email,
         password = req.body.password,
         userData = {},

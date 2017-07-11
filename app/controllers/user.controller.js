@@ -55,12 +55,32 @@ const deleteUser = function deleteUser(req, res) {
             generalController.errorResponse(res, err, "Please check originalError for details", "userAuth.controller.deleteUser",500);
         });
 };
-
-
-
+const getById = function getById(req, res) {
+      console.log(req.params.id);
+    return userHelper.getById(req.params.id)
+        .then(function (data) {
+            generalController.successResponse(res, "User Detail successfully.", data, "userAuth.controller.getUserById");
+        }).catch(StandardError, function (err) {
+            generalController.errorResponse(res, err, null, "userAuth.controller.getUserById",500);
+        }).catch(function (err) {
+            generalController.errorResponse(res, err, "Please check originalError for details", "userAuth.controller.deleteUser",500);
+        });
+};
+const allUsers=function allUsers(req,res){
+  return userHelper.allUsers()
+        .then(function (data) {
+            generalController.successResponse(res, "get all User successfully.", data, "userAuth.controller.deleteUser");
+        }).catch(StandardError, function (err) {
+            generalController.errorResponse(res, err, null, "userAuth.controller.deleteUser",500);
+        }).catch(function (err) {
+            generalController.errorResponse(res, err, "Please check originalError for details", "userAuth.controller.deleteUser",500);
+        });
+}
 module.exports = {
     signUp: signUp,
     changePassword : changePassword,
     updateUser : updateUser,
-    deleteUser : deleteUser
+    deleteUser : deleteUser,
+    allUsers:allUsers,
+    getById:getById
 }

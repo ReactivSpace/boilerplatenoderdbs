@@ -6,7 +6,8 @@ const express = require('express'),
     http = require('http'),
     passport = require('./app/config/passport'),
     app = express();
-
+const cors = require('cors');
+app.use(cors())
 global.winston = require('./app/config/winston');
 //Initialize Express
 require('./app/config/express')(app, passport);

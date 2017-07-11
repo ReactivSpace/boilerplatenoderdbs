@@ -8,7 +8,6 @@ const db = require('../config/sequelize.config'),
             generalHelpingMethods = require('./general.helper'),
             async = require('async');
 
-
  function signUp(input){
     const userObj = {
          userFirstName : input.firstName,
@@ -16,7 +15,8 @@ const db = require('../config/sequelize.config'),
          userFullName: input.firstName+input.lastName,
          userName : input.firstName + input.lastName,
          alias : input.firstName + input.lastName,
-         emailAddress : input.email
+         emailAddress : input.email,
+         UserRoleId:input.UserRoleId
      };
      //return generalHelpingMethods.rejectPromise("msg");
      var user = db.User.build(userObj);
@@ -91,12 +91,25 @@ const db = require('../config/sequelize.config'),
      }).catch(generalHelpingMethods.catchException);
 
  }
+ function allUsers(){
+     return db.User.findAll().then((user) => {
+        return user;
+     }).catch(generalHelpingMethods.catchException);
 
+ }
+ function getById(input){
+     return db.User.findById(input).then((user) => {
+        return user;
+     }).catch(generalHelpingMethods.catchException);
+
+ }
  module.exports = {
      signUp : signUp,
      changePassword : changePassword,
      updateUser : updateUser,
-     deleteUser : deleteUser
+     deleteUser : deleteUser,
+     allUsers:allUsers,
+     getById:getById
  }
 
 
