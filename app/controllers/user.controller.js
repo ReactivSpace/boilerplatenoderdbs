@@ -76,11 +76,22 @@ const allUsers=function allUsers(req,res){
             generalController.errorResponse(res, err, "Please check originalError for details", "userAuth.controller.deleteUser",500);
         });
 }
+const updateUserbyId=function updateUserbyId(req,res){
+        return userHelper.updateUserbyId(req.body, req.user)
+        .then(function (data) {
+            generalController.successResponse(res, "User updated successfully.", data, "User Update successfully.");
+        }).catch(StandardError, function (err) {
+            generalController.errorResponse(res, err, null, "userAuth.controller.changePassword",500);
+        }).catch(function (err) {
+            generalController.errorResponse(res, err, "Please check originalError for details", "userAuth.controller.changePassword",500);
+        });
+}
 module.exports = {
     signUp: signUp,
     changePassword : changePassword,
     updateUser : updateUser,
     deleteUser : deleteUser,
     allUsers:allUsers,
-    getById:getById
+    getById:getById,
+    updateUserbyId:updateUserbyId
 }

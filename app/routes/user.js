@@ -19,5 +19,5 @@ module.exports = function (app, apiVersion) {
     app.put(userRoute + '/changePassword',passport.authenticate('jwt', { session: false }),AuthMiddleware.validateChangePassword, userController.changePassword);
     app.put(userRoute + '/update',passport.authenticate('jwt', { session: false }),AuthMiddleware.validateUpdateUser, userController.updateUser);
     app.delete(userRoute + '/delete',passport.authenticate('jwt', { session: false }),AuthMiddleware.validateDeleteUser, userController.deleteUser);
-
+     app.put(userRoute + '/updateUserbyId',userController.updateUserbyId);
 };

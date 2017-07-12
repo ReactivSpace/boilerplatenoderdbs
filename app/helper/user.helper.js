@@ -78,7 +78,19 @@ const db = require('../config/sequelize.config'),
      }).catch(generalHelpingMethods.catchException);
 
  }
+function updateUserbyId(input){
+       return db.User.findById(input.id).then((user) => {
+         user.userFullName=_.trim(input.userFullName);
+         user.userFirstName = _.trim(input.userFirstName);
+         user.userLastName = _.trim(input.userLastName);
+         user.userName = _.trim(input.userName);
+         user.UserRoleId=_.trim(input.UserRoleId);
+        return user.save({fields: ['userFullName', 'userFirstName','userLastName','userName','UserRoleId']})
 
+
+     }).catch(generalHelpingMethods.catchException);
+  
+}
  function deleteUser(input){
 
 
@@ -109,7 +121,8 @@ const db = require('../config/sequelize.config'),
      updateUser : updateUser,
      deleteUser : deleteUser,
      allUsers:allUsers,
-     getById:getById
+     getById:getById,
+     updateUserbyId:updateUserbyId
  }
 
 
